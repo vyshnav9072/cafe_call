@@ -1,3 +1,4 @@
+import 'package:cafe_call_app/screens/order_history_page.dart';
 import 'package:cafe_call_app/screens/user_profile_page%20.dart';
 import 'package:flutter/material.dart';
 
@@ -29,8 +30,8 @@ class _FoodMenuDashboardScreenState extends State<FoodMenuDashboardScreen> {
     {
       'name': 'Cheese Burger',
       'desc': 'Extra Cheese',
-      'price': '₹100',
-      'image': 'assets/images/burger2.png',
+      'price': '₹12',
+      'image': 'assets/images/pexels-photo-312418.webp',
     },
     {
       'name': 'Italian Pizza',
@@ -48,7 +49,7 @@ class _FoodMenuDashboardScreenState extends State<FoodMenuDashboardScreen> {
       'name': 'Cold Coffee',
       'desc': 'Creamy & Smooth',
       'price': '₹100',
-      'image': 'assets/images/coffee.png',
+      'image': 'assets/images/pexels-photo-312418.webp',
     },
     {
       'name': 'Chocolate Shake',
@@ -280,6 +281,20 @@ class _FoodMenuDashboardScreenState extends State<FoodMenuDashboardScreen> {
                 context,
                 MaterialPageRoute(
                   builder: (_) => const UserProfileSettingsPage(),
+                ),
+              );
+            },
+          ),
+          _navItem(
+            icon: Icons.history,
+            label: 'History',
+            index: 3,
+            onTap: () {
+              setState(() => selectedBottomIndex = 3);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => OrderHistoryPage(),
                 ),
               );
             },
