@@ -1,10 +1,9 @@
-import 'package:cafe_call_app/screens/order_history_page.dart';
-import 'package:cafe_call_app/screens/user_profile_page%20.dart';
+import 'package:cafe_call_app/screens/user/track_order_screen.dart';
+import 'package:cafe_call_app/screens/user/user_profile_page%20.dart';
 import 'package:flutter/material.dart';
 
 import 'cart_page.dart';
-import 'track_order_screen.dart';
-
+import 'order_history_page.dart';
 
 class FoodMenuDashboardScreen extends StatefulWidget {
   const FoodMenuDashboardScreen({super.key});
@@ -30,7 +29,7 @@ class _FoodMenuDashboardScreenState extends State<FoodMenuDashboardScreen> {
     {
       'name': 'Cheese Burger',
       'desc': 'Extra Cheese',
-      'price': '₹12',
+      'price': '₹129',
       'image': 'assets/images/pexels-photo-312418.webp',
     },
     {
@@ -40,24 +39,23 @@ class _FoodMenuDashboardScreenState extends State<FoodMenuDashboardScreen> {
       'image': 'assets/images/pizza.png',
     },
     {
-      'name': 'Masala Noodles',
-      'desc': 'Spicy & Hot',
-      'price': '₹89',
-      'image': 'assets/images/close-up-view-masala-maggi-noodles-served-bowl-instant-spicy-ramen-noodles-fresh-green-onion-red-peppers-herbs-food-386925216.webp',
+      'name': 'Italian Pizza',
+      'desc': 'Cheese & Tomato',
+      'price': '₹199',
+      'image': 'assets/images/pizza.png',
     },
     {
-      'name': 'Cold Coffee',
-      'desc': 'Creamy & Smooth',
-      'price': '₹100',
-      'image': 'assets/images/pexels-photo-312418.webp',
+      'name': 'Italian Pizza',
+      'desc': 'Cheese & Tomato',
+      'price': '₹199',
+      'image': 'assets/images/pizza.png',
     },
     {
-      'name': 'Chocolate Shake',
-      'desc': 'With Nuts',
-      'price': '₹99',
-      'image': 'assets/images/img.png',
+      'name': 'Italian Pizza',
+      'desc': 'Cheese & Tomato',
+      'price': '₹199',
+      'image': 'assets/images/pizza.png',
     },
-
   ];
 
   @override
@@ -92,19 +90,19 @@ class _FoodMenuDashboardScreenState extends State<FoodMenuDashboardScreen> {
     );
   }
 
-  /// 🔹 TOP HEADER
+  /// 🔹 TOP HEADER WITH SEARCH FIELD
   Widget _topHeader() {
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text(
-              'Deliver to',
-              style: TextStyle(color: Colors.grey, fontSize: 12),
-            ),
-            SizedBox(height: 4),
-            Text(
+        const Text(
+          'Deliver to',
+          style: TextStyle(color: Colors.grey, fontSize: 12),
+        ),
+        const SizedBox(height: 4),
+        Row(
+          children: [
+            const Text(
               'Home, Downtown',
               style: TextStyle(
                 color: Colors.white,
@@ -112,14 +110,49 @@ class _FoodMenuDashboardScreenState extends State<FoodMenuDashboardScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            const Spacer(),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const UserProfileSettingsPage(),
+                  ),
+                );
+              },
+              child: const CircleAvatar(
+                radius: 18,
+                backgroundImage: AssetImage('assets/images/unnamed.jpg'),
+              ),
+            ),
           ],
         ),
-        Spacer(),
-        _circleIcon(Icons.search),
-        SizedBox(width: 12),
-         CircleAvatar(
-          radius: 18,
-          backgroundImage: AssetImage('assets/images/unnamed.jpg'),
+        const SizedBox(height: 16),
+
+        /// 🔍 SEARCH BAR
+        Container(
+          height: 46,
+          padding: const EdgeInsets.symmetric(horizontal: 14),
+          decoration: BoxDecoration(
+            color: const Color(0xFF1C1C1C),
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: Row(
+            children: const [
+              Icon(Icons.search, color: Colors.grey),
+              SizedBox(width: 10),
+              Expanded(
+                child: TextField(
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    hintText: "Search food, drinks...",
+                    hintStyle: TextStyle(color: Colors.grey),
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );
@@ -181,10 +214,7 @@ class _FoodMenuDashboardScreenState extends State<FoodMenuDashboardScreen> {
             children: [
               Expanded(
                 child: Center(
-                  child: Image.asset(
-                    item['image']!,
-                    fit: BoxFit.contain,
-                  ),
+                  child: Image.asset(item['image']!, fit: BoxFit.contain),
                 ),
               ),
               const SizedBox(height: 8),
@@ -232,115 +262,45 @@ class _FoodMenuDashboardScreenState extends State<FoodMenuDashboardScreen> {
 
   /// 🔹 BOTTOM NAVIGATION
   Widget _bottomNav() {
-    return Container(
-      height: 78,
-      decoration: const BoxDecoration(
-        color: Color(0xFF111111),
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          _navItem(
-            icon: Icons.home,
-            label: 'Home',
-            index: 0,
-            onTap: () => setState(() => selectedBottomIndex = 0),
-          ),
-          _navItem(
-            icon: Icons.shopping_cart,
-            label: 'Cart',
-            index: 1,
-            onTap: () {
-              setState(() => selectedBottomIndex = 1);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const ShoppingCartScreen()),
-              );
-            },
-          ),
-          _navItem(
-            icon: Icons.location_on,
-            label: 'Track',
-            index: 2,
-            onTap: () {
-              setState(() => selectedBottomIndex = 2);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const TrackOrderScreen()),
-              );
-            },
-          ),
-          _navItem(
-            icon: Icons.person,
-            label: 'Profile',
-            index: 3,
-            onTap: () {
-              setState(() => selectedBottomIndex = 3);
-              Navigator.push(
+    return BottomNavigationBar(
+      backgroundColor: const Color(0xFF111111),
+      selectedItemColor: Colors.red,
+      unselectedItemColor: Colors.grey,
+      currentIndex: selectedBottomIndex,
+      type: BottomNavigationBarType.fixed,
+      onTap: (index) {
+        setState(() => selectedBottomIndex = index);
+
+        switch (index) {
+          case 1:
+            Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const ShoppingCartScreen()));
+            break;
+          case 2:
+            Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const TrackOrderScreen()));
+            break;
+          case 3:
+            Navigator.push(context,
+                MaterialPageRoute(builder: (_) => OrderHistoryPage()));
+            break;
+          case 4:
+            Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const UserProfileSettingsPage(),
-                ),
-              );
-            },
-          ),
-          _navItem(
-            icon: Icons.history,
-            label: 'History',
-            index: 3,
-            onTap: () {
-              setState(() => selectedBottomIndex = 3);
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => OrderHistoryPage(),
-                ),
-              );
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _navItem({
-    required IconData icon,
-    required String label,
-    required int index,
-    required VoidCallback onTap,
-  }) {
-    final bool isActive = selectedBottomIndex == index;
-
-    return GestureDetector(
-      onTap: onTap,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, color: isActive ? Colors.red : Colors.grey),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: TextStyle(
-              color: isActive ? Colors.red : Colors.grey,
-              fontSize: 11,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  /// 🔹 CIRCLE ICON
-  Widget _circleIcon(IconData icon) {
-    return Container(
-      height: 36,
-      width: 36,
-      decoration: const BoxDecoration(
-        color: Color(0xFF1C1C1C),
-        shape: BoxShape.circle,
-      ),
-      child: Icon(icon, color: Colors.white, size: 18),
+                    builder: (_) => const UserProfileSettingsPage()));
+            break;
+        }
+      },
+      items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart), label: "Cart"),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.location_on), label: "Track"),
+        BottomNavigationBarItem(icon: Icon(Icons.history), label: "History"),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+      ],
     );
   }
 }

@@ -1,6 +1,7 @@
-import 'package:cafe_call_app/screens/food_menu_dashboard_screen.dart';
-import 'package:cafe_call_app/screens/sign_up_with_office_badge_page.dart';
+import 'package:cafe_call_app/screens/user/sign_up_with_office_badge_page.dart';
 import 'package:flutter/material.dart';
+
+import 'food_menu_dashboard_screen.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
   const OtpVerificationScreen({super.key});

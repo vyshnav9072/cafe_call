@@ -1,7 +1,9 @@
-import 'package:cafe_call_app/screens/otp_verification_screen.dart';
-import 'package:cafe_call_app/screens/premium_login_screen.dart';
+
+import 'package:cafe_call_app/screens/user/premium_login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'otp_verification_screen.dart';
 
 class SignUpWithOfficeBadgePage extends StatefulWidget {
   const SignUpWithOfficeBadgePage({super.key});

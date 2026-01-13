@@ -1,12 +1,10 @@
-import 'package:cafe_call_app/screens/user_profile_page%20.dart';
+import 'package:cafe_call_app/screens/user/user_profile_page%20.dart';
 import 'package:flutter/material.dart';
 
-// import your screens
+import 'package:cafe_call_app/screens/user/track_order_screen.dart';
+
 import 'cart_page.dart';
 import 'food_menu_dashboard_screen.dart';
-import 'shopping_cart_screen.dart';
-import 'track_order_screen.dart';
-import 'user_profile_settings_page.dart';
 import 'order_history_page.dart';
 
 class EmptyTrackingPage extends StatelessWidget {
@@ -68,7 +66,7 @@ class EmptyTrackingPage extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (_) => const FoodMenuDashboardScreen(),
@@ -89,55 +87,35 @@ class EmptyTrackingPage extends StatelessWidget {
       backgroundColor: Colors.black,
       selectedItemColor: Colors.red,
       unselectedItemColor: Colors.white54,
-      currentIndex: 2, // Track page selected
+      currentIndex: 2, // Track selected
       type: BottomNavigationBarType.fixed,
       onTap: (index) {
+        Widget page;
+
         switch (index) {
           case 0:
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (_) => const FoodMenuDashboardScreen(),
-              ),
-            );
+            page = const FoodMenuDashboardScreen();
             break;
-
           case 1:
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (_) => const ShoppingCartScreen(),
-              ),
-            );
+            page = const ShoppingCartScreen();
             break;
-
           case 2:
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (_) => const TrackOrderScreen(),
-              ),
-            );
+            page = const TrackOrderScreen();
             break;
-
           case 3:
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (_) => const UserProfileSettingsPage(),
-              ),
-            );
+            page = const OrderHistoryPage();
             break;
-
           case 4:
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (_) => const OrderHistoryPage(),
-              ),
-            );
+            page = const UserProfileSettingsPage();
             break;
+          default:
+            return;
         }
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => page),
+        );
       },
       items: const [
         BottomNavigationBarItem(
@@ -153,12 +131,12 @@ class EmptyTrackingPage extends StatelessWidget {
           label: "Track",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: "Profile",
+          icon: Icon(Icons.history),
+          label: "History",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.history),
-          label: "Orders",
+          icon: Icon(Icons.person),
+          label: "Profile",
         ),
       ],
     );

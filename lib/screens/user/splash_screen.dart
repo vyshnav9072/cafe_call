@@ -1,4 +1,4 @@
-import 'package:cafe_call_app/screens/premium_login_screen.dart';
+import 'package:cafe_call_app/screens/user/premium_login_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0C2E4E),
+      backgroundColor:Colors.black,
       body: SafeArea(
         child: Center(
           child: Column(
@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       ),
                       child: const Icon(
                         Icons.coffee,
-                        color: Colors.pinkAccent,
+                        color: Colors.red ,
                         size: 40,
                       ),
                     ),
@@ -71,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     const Text(
                       "MALL CAFE",
                       style: TextStyle(
-                        color: Colors.pinkAccent,
+                        color: Colors.red,
                         fontSize: 12,
                         letterSpacing: 3,
                       ),
