@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 // import your screens
 import 'cart_page.dart';
 import 'food_menu_dashboard_screen.dart';
-import 'shopping_cart_screen.dart';
 import 'track_order_screen.dart';
-import 'user_profile_settings_page.dart';
 import 'order_history_page.dart';
 
 class EmptyTrackingPage extends StatelessWidget {

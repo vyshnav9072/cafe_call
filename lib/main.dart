@@ -1,3 +1,4 @@
+import 'package:cafe_call_app/screens/admin/admin_dashboard_screeen.dart';
 import 'package:cafe_call_app/screens/food_menu_dashboard_screen.dart';
 import 'package:cafe_call_app/screens/Invoice_details_page.dart';
 import 'package:cafe_call_app/screens/cart_page.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(body: PremiumLoginSceen()),
+      home: Scaffold(body: AdminDashboardScreeen()),
       // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
