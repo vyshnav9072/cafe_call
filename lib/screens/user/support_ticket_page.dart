@@ -10,8 +10,8 @@ class SupportTicketPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text("Support & Ticket Status"),
-        leading: const BackButton(),
+        title:  Text("Support & Ticket Status",style: TextStyle(color: Colors.white),),
+        leading: const BackButton(color: Colors.white,),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),

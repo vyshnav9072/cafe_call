@@ -1,4 +1,9 @@
+import 'package:cafe_call_app/screens/user/support_ticket_page.dart';
+import 'package:cafe_call_app/screens/user/track_order_screen.dart';
+import 'package:cafe_call_app/screens/user/user_profile_page%20.dart';
 import 'package:flutter/material.dart';
+
+import 'cart_page.dart';
 
 class OrderHistoryPage extends StatefulWidget {
   const OrderHistoryPage({super.key});
@@ -9,6 +14,8 @@ class OrderHistoryPage extends StatefulWidget {
 
 class _OrderHistoryPageState extends State<OrderHistoryPage> {
   bool isSearching = false;
+  int selectedBottomIndex = 3; // History tab selected
+
   final TextEditingController searchController = TextEditingController();
 
   final List<Map<String, String>> orders = [
@@ -56,12 +63,11 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
     return Scaffold(
       backgroundColor: const Color(0xFF12090C),
 
-      // 🔹 APP BAR WITH SEARCH
+      // 🔹 APP BAR
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: const BackButton(color: Colors.white),
-
         title: isSearching
             ? TextField(
           controller: searchController,
@@ -78,7 +84,6 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
           "Order History",
           style: TextStyle(color: Colors.white),
         ),
-
         actions: [
           IconButton(
             icon: Icon(
@@ -118,6 +123,9 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
           );
         },
       ),
+
+      // 🔹 BOTTOM NAVIGATION
+
     );
   }
 
@@ -170,4 +178,7 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
       ),
     );
   }
+
+  // 🔹 BOTTOM NAV BAR
+
 }

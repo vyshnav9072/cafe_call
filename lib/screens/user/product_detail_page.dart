@@ -20,7 +20,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
           Stack(
             children: [
               Image.asset(
-                "assets/burger.png", // replace with your image
+                "assets/images/Drinks.png", // replace with your image
                 height: 340,
                 width: double.infinity,
                 fit: BoxFit.cover,
@@ -57,7 +57,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     children: [
                       const Expanded(
                         child: Text(
-                          "Double Wagyu BBQ Burger",
+                          "Combo Drinks",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 22,
@@ -72,7 +72,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: const Text(
-                          "\$14.99",
+                          "79.99",
                           style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
                         ),
                       )
@@ -83,7 +83,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
                   /// DESCRIPTION
                   const Text(
-                    "Flame-grilled double wagyu beef patty, melted aged cheddar, crispy smoked onions, and our signature hickory BBQ sauce on a toasted artisan brioche bun.",
+                    "“When one drink isn’t enough 🍓🍍🍊",
                     style: TextStyle(color: Colors.white54, height: 1.5),
                   ),
 
@@ -151,7 +151,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           Text("TOTAL PRICE", style: TextStyle(color: Colors.white54, fontSize: 12)),
                           SizedBox(height: 4),
                           Text(
-                            "\$14.99",
+                            "79.99",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 22,

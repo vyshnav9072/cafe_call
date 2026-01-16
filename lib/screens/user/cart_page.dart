@@ -1,3 +1,4 @@
+import 'package:cafe_call_app/screens/user/support_ticket_page.dart';
 import 'package:cafe_call_app/screens/user/user_profile_page%20.dart';
 import 'package:flutter/material.dart';
 
@@ -51,10 +52,10 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
             children: [
               _cartItem(
                 image:
-                "https://images.unsplash.com/photo-1550547660-d9450f859349",
+                    "https://images.unsplash.com/photo-1550547660-d9450f859349",
                 title: "Double Wag...",
                 subtitle: "Extra cheese, No onion",
-                price: 18.00,
+                price: 35.00,
                 quantity: burgerQty,
                 onAdd: () => setState(() => burgerQty++),
                 onRemove: () {
@@ -68,7 +69,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
 
               _cartItem(
                 image:
-                "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d",
+                    "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d",
                 title: "Truffle Fries",
                 subtitle: "Side order",
                 price: 6.50,
@@ -94,7 +95,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     hintText:
-                    "Add a note (e.g. no onions, extra sauce, delivery gate code)...",
+                        "Add a note (e.g. no onions, extra sauce, delivery gate code)...",
                     hintStyle: TextStyle(color: Colors.grey),
                     border: InputBorder.none,
                   ),
@@ -102,11 +103,11 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
               ),
 
               const SizedBox(height: 20),
-              _priceRow("Subtotal", "\$24.50"),
-              _priceRow("Delivery Fee", "\$2.00"),
-              _priceRow("Tax & Services", "\$1.50"),
+              _priceRow("Subtotal", "97."),
+              _priceRow("Delivery Fee", "2.00"),
+              _priceRow("Tax & Services", "1.50"),
               const Divider(color: Colors.grey),
-              _priceRow("Total", "\$28.00", isTotal: true),
+              _priceRow("Total", "100.00", isTotal: true),
 
               /// space for bottom bar
               const SizedBox(height: 120),
@@ -119,55 +120,85 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
       bottomNavigationBar: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Checkout Bar
+          /// 🔥 Checkout Pill Bar
           Container(
             padding: const EdgeInsets.all(12),
-            decoration: const BoxDecoration(color: Color(0xFF120A0A)),
-            child: Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 14,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: const Text(
-                    "CHECKOUT\n\$28.00",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+            decoration: const BoxDecoration(
+              color: Color(0xFF120A0A),
+            ),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => TrackOrderScreen()),
+                );
+              },
+              child: Container(
+                height: 56,
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(32),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.red.withOpacity(0.35),
+                      blurRadius: 12,
+                      offset: const Offset(0, 6),
                     ),
-                  ),
+                  ],
                 ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Container(
-                    height: 52,
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "Confirm Order  ➜",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                child: Row(
+                  children: [
+                    /// LEFT – Checkout Amount
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          "CHECKOUT",
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 11,
+                            letterSpacing: 1,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
+                        SizedBox(height: 2),
+                        Text(
+                          "₹100.00",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const Spacer(),
+
+                    /// RIGHT – Confirm Order
+                    const Text(
+                      "Confirm Order",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
+                    const SizedBox(width: 8),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 16,
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
 
-          // Bottom Navigation
+          /// 🔽 Bottom Navigation (unchanged)
           BottomNavigationBar(
             backgroundColor: Colors.black,
             selectedItemColor: Colors.red,
@@ -190,9 +221,6 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                 case 3:
                   page = const OrderHistoryPage();
                   break;
-                case 4:
-                  page = const UserProfileSettingsPage();
-                  break;
                 default:
                   return;
               }
@@ -211,11 +239,14 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
               BottomNavigationBarItem(
                   icon: Icon(Icons.history), label: "History"),
               BottomNavigationBarItem(
+                  icon: Icon(Icons.support_agent), label: "Support"),
+              BottomNavigationBarItem(
                   icon: Icon(Icons.person), label: "Profile"),
             ],
           ),
         ],
       ),
+
     );
   }
 
@@ -258,7 +289,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  "\$${price.toStringAsFixed(2)}",
+                  "${price.toStringAsFixed(2)}",
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

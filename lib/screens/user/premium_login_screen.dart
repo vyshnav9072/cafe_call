@@ -1,3 +1,4 @@
+import 'package:cafe_call_app/screens/user/bottom_nav_screen.dart';
 import 'package:cafe_call_app/screens/user/sign_up_with_office_badge_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -105,7 +106,7 @@ class _PremiumLoginSceenState extends State<PremiumLoginSceen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => const FoodMenuDashboardScreen(),
+                        builder: (_) =>  FoodMenuDashboardScreen(),
                       ),
                     );
                   },

@@ -1,9 +1,8 @@
-import 'package:cafe_call_app/screens/user/track_order_screen.dart';
+import 'package:cafe_call_app/screens/user/cart_page.dart';
 import 'package:cafe_call_app/screens/user/user_profile_page%20.dart';
 import 'package:flutter/material.dart';
-
-import 'cart_page.dart';
-import 'order_history_page.dart';
+import 'support_ticket_page.dart';
+import 'track_order_screen.dart';
 
 class FoodMenuDashboardScreen extends StatefulWidget {
   const FoodMenuDashboardScreen({super.key});
@@ -15,46 +14,45 @@ class FoodMenuDashboardScreen extends StatefulWidget {
 
 class _FoodMenuDashboardScreenState extends State<FoodMenuDashboardScreen> {
   int selectedCategory = 0;
-  int selectedBottomIndex = 0;
 
   final List<String> categories = ['All', 'Burgers', 'Pizzas', 'Drinks'];
 
   final List<Map<String, String>> items = [
     {
-      'name': 'Classic Burger',
-      'desc': 'Crispy Chicken',
-      'price': '₹99',
+      'name': 'Coffee',
+      'desc': '',
+      'price': '15',
       'image': 'assets/images/pexels-photo-312418.webp',
     },
     {
-      'name': 'Cheese Burger',
-      'desc': 'Extra Cheese',
-      'price': '₹129',
-      'image': 'assets/images/pexels-photo-312418.webp',
+      'name': ' Samoosa',
+      'desc': '',
+      'price': '12',
+      'image': 'assets/images/1bdaca54b40441bc8a1bccc733e3ca43.jpg',
     },
     {
-      'name': 'Italian Pizza',
-      'desc': 'Cheese & Tomato',
-      'price': '₹199',
-      'image': 'assets/images/pizza.png',
+      'name': 'Tea',
+      'desc': '',
+      'price': '10',
+      'image': 'assets/images/5cb88a02e013987379378009ba8d7eb2.jpg',
     },
     {
-      'name': 'Italian Pizza',
-      'desc': 'Cheese & Tomato',
-      'price': '₹199',
-      'image': 'assets/images/pizza.png',
+      'name': 'Butter Bun',
+      'desc': '',
+      'price': '30',
+      'image': 'assets/images/ca126e6fba83b7f7f6f9199ef6d31b0d.jpg',
     },
     {
-      'name': 'Italian Pizza',
-      'desc': 'Cheese & Tomato',
-      'price': '₹199',
-      'image': 'assets/images/pizza.png',
+      'name': 'Avilmilk',
+      'desc': '',
+      'price': '35',
+      'image': 'assets/images/e76ea37987f84a7c61000e05b2ae309d.jpg',
     },
     {
-      'name': 'Italian Pizza',
-      'desc': 'Cheese & Tomato',
-      'price': '₹199',
-      'image': 'assets/images/pizza.png',
+      'name': 'Romali rol',
+      'desc': '',
+      'price': '35',
+      'image': 'assets/images/c4122e01fde5625b65ea2b9d2ecb6afd.jpg',
     },
   ];
 
@@ -62,7 +60,6 @@ class _FoodMenuDashboardScreenState extends State<FoodMenuDashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF0E0E0E),
-      bottomNavigationBar: _bottomNav(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -76,10 +73,9 @@ class _FoodMenuDashboardScreenState extends State<FoodMenuDashboardScreen> {
               const Text(
                 'Popular Items',
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 16),
               Expanded(child: _itemsGrid()),
@@ -90,71 +86,52 @@ class _FoodMenuDashboardScreenState extends State<FoodMenuDashboardScreen> {
     );
   }
 
-  /// 🔹 TOP HEADER WITH SEARCH FIELD
+  /// 🔹 TOP HEADER
   Widget _topHeader() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
       children: [
-        const Text(
-          'Deliver to',
-          style: TextStyle(color: Colors.grey, fontSize: 12),
+        const Text('Home, Downtown',
+            style: TextStyle(color: Colors.white, fontSize: 16)),
+        const Spacer(),
+        _circleIcon(
+          icon: Icons.fmd_good_outlined,
+          onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const TrackOrderScreen())),
         ),
-        const SizedBox(height: 4),
-        Row(
-          children: [
-            const Text(
-              'Home, Downtown',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const Spacer(),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const UserProfileSettingsPage(),
-                  ),
-                );
-              },
-              child: const CircleAvatar(
-                radius: 18,
-                backgroundImage: AssetImage('assets/images/unnamed.jpg'),
-              ),
-            ),
-          ],
+        const SizedBox(width: 12),
+        _circleIcon(
+          icon: Icons.support_agent,
+          onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const SupportTicketPage())),
         ),
-        const SizedBox(height: 16),
-
-        /// 🔍 SEARCH BAR
-        Container(
-          height: 46,
-          padding: const EdgeInsets.symmetric(horizontal: 14),
-          decoration: BoxDecoration(
-            color: const Color(0xFF1C1C1C),
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Row(
-            children: const [
-              Icon(Icons.search, color: Colors.grey),
-              SizedBox(width: 10),
-              Expanded(
-                child: TextField(
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                    hintText: "Search food, drinks...",
-                    hintStyle: TextStyle(color: Colors.grey),
-                    border: InputBorder.none,
-                  ),
-                ),
-              ),
-            ],
+        const SizedBox(width: 12),
+        GestureDetector(onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>UserProfileSettingsPage()));},
+          child: const CircleAvatar(
+            radius: 18,
+            backgroundImage: AssetImage('assets/images/unnamed.jpg'),
           ),
         ),
       ],
+    );
+  }
+
+  Widget _circleIcon({
+    required IconData icon,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 36,
+        width: 36,
+        decoration: const BoxDecoration(
+          color: Color(0xFF1C1C1C),
+          shape: BoxShape.circle,
+        ),
+        child: Icon(icon, color: Colors.white),
+      ),
     );
   }
 
@@ -167,7 +144,7 @@ class _FoodMenuDashboardScreenState extends State<FoodMenuDashboardScreen> {
         itemCount: categories.length,
         separatorBuilder: (_, __) => const SizedBox(width: 10),
         itemBuilder: (context, index) {
-          final bool isSelected = selectedCategory == index;
+          final isSelected = selectedCategory == index;
           return GestureDetector(
             onTap: () => setState(() => selectedCategory = index),
             child: Container(
@@ -180,9 +157,7 @@ class _FoodMenuDashboardScreenState extends State<FoodMenuDashboardScreen> {
               child: Text(
                 categories[index],
                 style: TextStyle(
-                  color: isSelected ? Colors.white : Colors.grey,
-                  fontWeight: FontWeight.w600,
-                ),
+                    color: isSelected ? Colors.white : Colors.grey),
               ),
             ),
           );
@@ -213,43 +188,32 @@ class _FoodMenuDashboardScreenState extends State<FoodMenuDashboardScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: Center(
-                  child: Image.asset(item['image']!, fit: BoxFit.contain),
-                ),
+                child: Image.asset(item['image']!, fit: BoxFit.contain),
               ),
               const SizedBox(height: 8),
-              Text(
-                item['name']!,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                item['desc']!,
-                style: const TextStyle(color: Colors.grey, fontSize: 12),
-              ),
+              Text(item['name']!,
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold)),
+              Text(item['desc']!,
+                  style:
+                  const TextStyle(color: Colors.grey, fontSize: 12)),
               const SizedBox(height: 8),
               Row(
                 children: [
                   Text(
-                    item['price']!,
+                    '₹${item['price']}',
                     style: const TextStyle(
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold,
-                    ),
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold),
                   ),
                   const Spacer(),
-                  Container(
-                    height: 32,
-                    width: 32,
-                    decoration: const BoxDecoration(
-                      color: Colors.red,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(Icons.add,
-                        color: Colors.white, size: 18),
+                  GestureDetector(
+                    onTap: () {
+                      _openItemBottomSheet(item);
+                    },
+                    child: const Icon(Icons.add_circle,
+                        color: Colors.red),
                   ),
                 ],
               ),
@@ -260,47 +224,147 @@ class _FoodMenuDashboardScreenState extends State<FoodMenuDashboardScreen> {
     );
   }
 
-  /// 🔹 BOTTOM NAVIGATION
-  Widget _bottomNav() {
-    return BottomNavigationBar(
-      backgroundColor: const Color(0xFF111111),
-      selectedItemColor: Colors.red,
-      unselectedItemColor: Colors.grey,
-      currentIndex: selectedBottomIndex,
-      type: BottomNavigationBarType.fixed,
-      onTap: (index) {
-        setState(() => selectedBottomIndex = index);
+  /// 🔥 BOTTOM SHEET (LIKE IMAGE)
+  void _openItemBottomSheet(Map<String, String> item) {
+    int qty = 0;
+    int price = int.parse(item['price']!);
 
-        switch (index) {
-          case 1:
-            Navigator.push(context,
-                MaterialPageRoute(builder: (_) => const ShoppingCartScreen()));
-            break;
-          case 2:
-            Navigator.push(context,
-                MaterialPageRoute(builder: (_) => const TrackOrderScreen()));
-            break;
-          case 3:
-            Navigator.push(context,
-                MaterialPageRoute(builder: (_) => OrderHistoryPage()));
-            break;
-          case 4:
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => const UserProfileSettingsPage()));
-            break;
-        }
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.black,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setModalState) {
+            return Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  /// ITEM NAME
+                  Text(
+                    item['name']!,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  /// ITEM ROW
+                  Row(
+                    children: [
+                      Image.asset(
+                        item['image']!,
+                        height: 50,
+                        width: 50,
+                      ),
+                      const SizedBox(width: 12),
+
+                      /// PRICE (RED)
+                      Expanded(
+                        child: Text(
+                          '₹$price',
+                          style: const TextStyle(
+                            color: Colors.white, // 🔴 PRICE COLOR FIXED
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+
+                      /// ADD / QTY BUTTON
+                      qty == 0
+                          ? ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                        ),
+                        onPressed: () {
+                          setModalState(() => qty = 1);
+                        },
+                        child: const Text(
+                          'ADD',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
+                          : Row(
+                        children: [
+                          IconButton(
+                            color: Colors.red,
+                            onPressed: () {
+                              setModalState(() => qty--);
+                            },
+                            icon: const Icon(Icons.remove_circle),
+                          ),
+                          Text(
+                            '$qty',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          IconButton(
+                            color: Colors.red,
+                            onPressed: () {
+                              setModalState(() => qty++);
+                            },
+                            icon: const Icon(Icons.add_circle),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  /// TOTAL + CONFIRM
+                  GestureDetector(onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>ShoppingCartScreen()));},
+                    child: Container(
+                      width: double.infinity,
+                      padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(
+                        children: [
+                          Text(
+                            'Item total : ₹${qty * price}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                           Spacer(),
+                          GestureDetector(onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>ShoppingCartScreen()));},
+                            child: Text(
+                              'Confirm',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
       },
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart), label: "Cart"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.location_on), label: "Track"),
-        BottomNavigationBarItem(icon: Icon(Icons.history), label: "History"),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-      ],
     );
   }
+
 }

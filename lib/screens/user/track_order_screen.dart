@@ -1,3 +1,4 @@
+import 'package:cafe_call_app/screens/user/cart_page.dart';
 import 'package:flutter/material.dart';
 
 import 'food_menu_dashboard_screen.dart';
@@ -29,7 +30,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (_) => const FoodMenuDashboardScreen(),
+                builder: (_) => const ShoppingCartScreen(),
               ),
             );
           },
@@ -139,67 +140,12 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
       ),
 
       /// Custom Bottom Navigation
-      bottomNavigationBar: _bottomNav(),
+
     );
   }
 
   /// 🔹 Bottom Navigation (Custom)
-  Widget _bottomNav() {
-    return Container(
-      height: 78,
-      decoration: const BoxDecoration(
-        color: Color(0xFF111111),
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          _navItem(
-            icon: Icons.home,
-            label: 'Home',
-            index: 0,
-            onTap: () {
-              setState(() => selectedBottomIndex = 0);
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const FoodMenuDashboardScreen(),
-                ),
-              );
-            },
-          ),
-          _navItem(
-            icon: Icons.shopping_cart,
-            label: 'Cart',
-            index: 1,
-            onTap: () {
-              setState(() => selectedBottomIndex = 1);
-              // Navigator.push(context,
-              //   MaterialPageRoute(builder: (_) => const ShoppingCartScreen()));
-            },
-          ),
-          _navItem(
-            icon: Icons.location_on,
-            label: 'Track',
-            index: 2,
-            onTap: () {
-              setState(() => selectedBottomIndex = 2);
-            },
-          ),
-          _navItem(
-            icon: Icons.person,
-            label: 'Profile',
-            index: 3,
-            onTap: () {
-              setState(() => selectedBottomIndex = 3);
-              // Navigator.push(context,
-              //   MaterialPageRoute(builder: (_) => const UserProfileSettingsPage()));
-            },
-          ),
-        ],
-      ),
-    );
-  }
+
 
   Widget _navItem({
     required IconData icon,
